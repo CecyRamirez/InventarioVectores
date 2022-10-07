@@ -51,12 +51,13 @@
             let codigo= document.getElementById("codigo").value;
             let res=inventario.buscar(codigo);
             if (res==null)
-                console.log("no existe");
+            document.getElementById("detalles").innerHTML +="no existe<br>";
             else{
                 console.log(res.nombre)
                 document.getElementById("detalles").innerHTML += "<br>BÚSQUEDA:" + res.infoHtml() 
             }
         })
+        
     </script>
 </body>
 </html>

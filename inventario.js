@@ -4,7 +4,48 @@ class Inventario{
     }
 
     agregar(producto){
-        this.productos.push(producto);
+        if(this.productos.length==0){
+            this.productos.push(producto);
+        }
+        else{
+            if(this.productos.length==0){
+                this.productos.push(producto);
+            }
+            else{
+                //buscar valor
+                let left= 0;
+                let right= this.productos.length-1;
+                while(left <= right){
+                    var mid_index =Math.floor((left + right)/2);
+                    let middle_value = this.productos[mid_index].codigo;
+                    if(codigo== middle_value){
+                        return this.productos[mid_index];
+                    }
+                    if (codigo < middle_value){
+                        right= mid_index -1;
+                    }
+                    else if (codigo > middle_value){
+                        left= mid_index +1;
+                    }
+                }
+                console.log('mid i ' + mid_index)
+                console.log(this.productos[mid_index].codigo);
+                if(this.productos[mid_index].codigo > producto.codigo && producto.codigo>this.productos[mid_index-1].codigo){
+                    console.log("entró");
+                    this.productos.push(producto);
+                    console.log(this.productos);
+                    let aux= this.productos.length-1;
+                    for(let i= this.productos.length-1; i>mid_index;i--){
+                        this.productos[i]= this.productos[i-1];
+                    }
+                    this.productos[mid_index]=producto;
+                }
+                else if(this.productos[mid_index].codigo < producto.codigo){
+                    this.productos.push(producto);
+
+                }
+            }
+        }
     }
     eliminar(codigo){
         for (let i=0;i< this.productos.length; i++){
@@ -34,11 +75,32 @@ class Inventario{
         return aux;
     }
     buscar(codigo){
-        for (let i=0;i< this.productos.length; i++){
-            if(this.productos[i].codigo == codigo){
-                return this.productos[i];
+        let left= 0;
+        let right= this.productos.length-1;
+        console.log('right ' + right);
+
+        while(left <= right){
+            var middle_index =Math.floor((left + right)/2);
+            console.log('right ' + right);
+            console.log('left ' + left);
+            console.log('mid i ' + middle_index);
+            let middle_value = this.productos[middle_index].codigo;
+            console.log('mid v' + middle_value);
+
+            if(codigo== middle_value){
+                return this.productos[middle_index];
+            }
+            if (codigo < middle_value){
+                right= middle_index -1;
+            }
+            else if (codigo > middle_value){
+                left= middle_index +1;
             }
         }
+        console.log('mid i ' + middle_index)
         return null;
     }
+
 }
+
+
