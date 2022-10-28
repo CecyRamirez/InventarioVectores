@@ -30,6 +30,7 @@ class Inventario{
                 }
                 console.log('mid i ' + mid_index)
                 console.log(this.productos[mid_index].codigo);
+                console.log(producto.codigo)
                 if(this.productos[mid_index].codigo > producto.codigo && producto.codigo>this.productos[mid_index-1].codigo){
                     console.log("entró");
                     this.productos.push(producto);
